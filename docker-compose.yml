@@ -14,7 +14,7 @@ services:
       - mysqldata:/var/lib/mysql
 
   backend:
-    image: shrsyc/dd_assignment_backend
+    image: shrsyc/nursery-management-backend
     restart: on-failure
     ports:
       - "8081:8080"
@@ -30,7 +30,7 @@ services:
       SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQL8Dialect
 
   frontend:
-    image: shrsyc/dd_assignment_frontend
+    image: shrsyc/nursery-management-frontend
     restart: always
     ports:
       - "80:80"
