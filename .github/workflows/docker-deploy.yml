@@ -36,12 +36,14 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/nursery-management-backend:latest
 
-    - name: Deploy to Cloud VM
-      uses: appleboy/ssh-action@master
+    - name: Upload docker-compose file
+      uses: appleboy/scp-action@master
       with:
         host: ${{ secrets.VM_HOST }}
         username: ${{ secrets.VM_USER }}
         key: ${{ secrets.VM_PRIVATE_KEY }}
+        source: "docker-compose.yml"
+        target: "~/Deploy-React-spring-mySQL/"
         script: |
           cd ~/Deploy-React-spring-mySQL
           docker-compose down || true
