@@ -44,7 +44,14 @@ jobs:
         key: ${{ secrets.VM_PRIVATE_KEY }}
         source: "docker-compose.yml"
         target: "~/Deploy-React-spring-mySQL/"
+          
+    - name: Deploy via SSH
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.VM_HOST }}
+        username: ${{ secrets.VM_USER }}
+        key: ${{ secrets.VM_PRIVATE_KEY }}
         script: |
           cd ~/Deploy-React-spring-mySQL
           docker-compose down || true
-          docker-compose up -d 
+          docker-compose up -d
